@@ -1,0 +1,22 @@
+[Unit]
+
+Description=Gunicorn Daemon for FastAPI Application
+
+After=network.target
+
+
+
+[Service]
+
+User=server
+
+Group=www-data
+
+WorkingDirectory=/home/server/fileMiddleware
+
+ExecStart= gunicorn  -b 0.0.0.0:5000 --worker-class uvicorn.workers.UvicornWorker main:app
+
+
+[Install]
+
+WantedBy=multi-user.target
